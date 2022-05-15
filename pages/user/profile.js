@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { FiEdit } from "react-icons/fi";
 
 const Profile = () => {
   const { currentUser } = useAuth();
@@ -69,6 +70,10 @@ const Profile = () => {
       question_id: questionId,
     });
     console.log(response.data);
+  };
+  const editQuestionHandler = async (questionId) => {
+    
+    
   };
 
   return (
@@ -140,6 +145,14 @@ const Profile = () => {
                           }
                         >
                           <RiDeleteBin6Fill size={24} />
+                        </div>
+                        <div
+                          className="text-teal-300 font-bold hover:text-teal-500"
+                          onClick={() =>
+                            editQuestionHandler(question.question_id)
+                          }
+                        >
+                          <FiEdit size={24} />
                         </div>
                       </div>
                     );
