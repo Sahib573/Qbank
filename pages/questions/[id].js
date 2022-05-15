@@ -7,8 +7,19 @@ import { useAuth } from "../../components/context/AuthContext";
 
 const Doubt = () => {
   const [displayQuestion, setDisplayQuestion] = useState(true);
+  const [questionDetails, setQuestionDetails] = useState();
   const { currentUser } = useAuth();
-  if (displayQuestion) {
+  const route = useRouter();
+  const getQuestionDetails = async () => {
+    const response = await axios.post("/api/getQuestionDetails", {
+      question_id: route.query.id,
+    });
+    setQuestionDetails(response.data);
+  };
+  useEffect(() => {
+    getQuestionDetails();
+  });
+  if (displayQuestion && questionDetails) {
     return (
       <div className="">
         <NavBar />
@@ -25,11 +36,13 @@ const Doubt = () => {
             <div className="p-4 border-t border-gray-200">
               <div className="flex items-center justify-between">
                 <h1 className="text-gray-600 mx-auto font-medium">
-                  AuthorName
+                  {questionDetails.author}
                 </h1>
                 <button className="text-gray-500 hover:text-gray-900"></button>
               </div>
-              <p className="text-gray-400 text-center text-sm my-1">Author</p>
+              <p className="text-gray-400 text-center text-sm my-1">
+                {questionDetails.author_email}
+              </p>
             </div>
           </div>
 
@@ -37,10 +50,10 @@ const Doubt = () => {
             <div className="grid grid-cols-2">
               <div className="mb-4">
                 <div className="text-2xl text-gray-800 font-semibold">
-                  Question Title
+                  {questionDetails.title}
                 </div>
                 <div className="text-sm flex">
-                  Posted in <div className="px-1 text-teal-600   ">General</div>{" "}
+                  Posted in <div className="px-1 text-teal-600">General</div>{" "}
                   recently
                 </div>
               </div>
@@ -51,16 +64,18 @@ const Doubt = () => {
             </div>
             <div className="">
               <ol>
-                <li>A . Option 1 </li>
-                <li>B . Option 2</li>
-                <li>C . Option 3</li>
-                <li>D . Option 4</li>
+                <li>A . {questionDetails.option1} </li>
+                <li>B . {questionDetails.option2}</li>
+                <li>C . {questionDetails.option3}</li>
+                <li>D . {questionDetails.option4}</li>
               </ol>
             </div>
-            <div className="pt-4 text-blue-700">Answer : Question Answer</div>
+            <div className="pt-4 text-blue-700">
+              Answer : {questionDetails.answer}
+            </div>
             <h2 className="text-center text-2xl mb-3 mt-3">Explanation</h2>
             <p className="text-gray-600 leading-6 tracking-normal">
-              Question Explanation
+              {questionDetails.explanation}
             </p>
           </div>
         </div>

@@ -10,23 +10,6 @@ function NavBar() {
   const signOutButton = async () => {
     await logout();
   };
-
-  const pdfdownload = async () => {
-    // const Pdfmake = require("pdfmake");
-    // let pdfmake = new Pdfmake();
-    // let docdef = {
-    //   content: ["hello bc"],
-    // };
-    // let pdfdoc;
-    // pdfdoc = pdfmake.createPdfKitDocument(docdef, {});
-    // pdfdoc.end();
-    let pdfmake = require("pdfmake");
-    let docDefinition = {
-      content: ["This is an sample PDF printed with pdfMake"],
-    };
-    pdfmake.createPdf(docDefinition).open();
-    pdfmake.end();
-  };
   return (
     <div className="sticky top-0 z-50">
       <div className="bg-white shadow">
@@ -52,14 +35,6 @@ function NavBar() {
               <Link href="/questions" passHref>
                 <div className="text-gray-700 text-lg font-semibold hover:text-teal-600   cursor-pointer mr-4">
                   Questions
-                </div>
-              </Link>
-              <Link href="/questions" passHref>
-                <div
-                  className="text-gray-700 text-lg font-semibold hover:text-teal-600   cursor-pointer mr-4"
-                  onClick={pdfdownload}
-                >
-                  pdf
                 </div>
               </Link>
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Footer from "../../../components/Footer";
@@ -9,17 +9,18 @@ import Question from "../../../components/Questions/Question";
 function Subject() {
   const route = useRouter();
   const subject = route.query.id;
+  const [questionId, setQuestionId] = useState([]);
   const getQuestions = async () => {
     if (subject) {
       const response = await axios.post("/api/retrieve_question", {
         subject_name: subject,
       });
-      console.log(response.data);
+      setQuestionId(response.data);
     }
   };
   useEffect(() => {
     getQuestions();
-  }, [subject]);
+  }, []);
   return (
     <div>
       <NavBar />
@@ -47,12 +48,18 @@ function Subject() {
           </div>
           <Link href="/questions/contribute">
             <div className="flex justify-end items-center">
-              <div className="p-2 border-2 border-purple-500 w-1/6 flex justify-center items-center rounded-lg hover:border-purple-100 hover:text-purple-500 cursor-pointer">
+              <div className="p-2 border-2 border-teal-500 w-1/6 flex justify-center items-center rounded-lg hover:border-teal-100 hover:text-teal-500 cursor-pointer">
                 Contribute Questions
               </div>
             </div>
           </Link>
-          <Question />
+          <div>
+            {questionId && questionId.length
+              ? questionId.map((question) => {
+                  return <Question key={question} id={question} />;
+                })
+              : ""}
+          </div>
         </div>
       </section>
       <Footer />
