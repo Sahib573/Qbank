@@ -28,12 +28,12 @@ function NavBar() {
             </Link>
             <div className="hidden sm:flex sm:items-center">
               <Link href="/" passHref>
-                <div className="text-gray-800 text-sm font-semibold hover:text-purple-600 cursor-pointer mr-4">
+                <div className="text-gray-700 text-lg font-semibold hover:text-teal-600   cursor-pointer mr-4">
                   Home
                 </div>
               </Link>
               <Link href="/questions" passHref>
-                <div className="text-gray-800 text-sm font-semibold hover:text-purple-600 cursor-pointer mr-4">
+                <div className="text-gray-700 text-lg font-semibold hover:text-teal-600   cursor-pointer mr-4">
                   Questions
                 </div>
               </Link>
@@ -43,14 +43,14 @@ function NavBar() {
               <div className="hidden sm:flex sm:items-center">
                 <Link href="/" passHref>
                   <div
-                    className="text-gray-800 ml-2 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 cursor-pointer hover:border-purple-600"
+                    className="text-gray-700 ml-2 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-teal-600   cursor-pointer hover:border-teal-600   "
                     onClick={signOutButton}
                   >
                     Sign Out
                   </div>
                 </Link>
                 <Link href="/user/profile" passHref>
-                  <div className="text-gray-800 ml-2 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 cursor-pointer hover:border-purple-600">
+                  <div className="text-gray-700 ml-2 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-teal-600   cursor-pointer hover:border-teal-600   ">
                     {" "}
                     Profile
                   </div>
@@ -59,7 +59,7 @@ function NavBar() {
             ) : (
               <div className="hidden sm:flex sm:items-center">
                 <div onClick={() => googleLoginHandler()}>
-                  <div className="text-gray-800 ml-2 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 cursor-pointer hover:border-purple-600">
+                  <div className="text-gray-700 ml-2 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-teal-600 cursor-pointer hover:border-teal-600  ">
                     LogIn
                   </div>
                 </div>
