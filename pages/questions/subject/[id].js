@@ -19,7 +19,7 @@ function Subject() {
   };
   useEffect(() => {
     getQuestions();
-  }, []);
+  }, [subject]);
   return (
     <div>
       <NavBar />
