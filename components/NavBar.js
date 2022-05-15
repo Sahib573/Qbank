@@ -18,11 +18,11 @@ function NavBar() {
             <Link href="/" passHref>
               <div>
                 <Image
-                  src="/logo.jpg"
+                  src="/logo.png"
                   alt=" Logo"
-                  className="h-10 w-30"
-                  height="40px"
-                  width="80px"
+                  className="h-30 w-30"
+                  height="45px"
+                  width="170px"
                 />
               </div>
             </Link>
