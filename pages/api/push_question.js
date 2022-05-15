@@ -12,7 +12,6 @@ export default async function Users(req, res) {
       .collection(subject_name)
       .find({})
       .toArray();
-    console.log(questionArrayDetails[0]);
     const newQuestionArray = questionArrayDetails[0].questionId;
     newQuestionArray.push(id_);
     await db

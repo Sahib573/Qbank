@@ -4,12 +4,14 @@ import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 const Profile = () => {
   const { currentUser } = useAuth();
   const [userDetails, setUserDetails] = useState({});
   const [userUploadedQuestions, setUserUploadedQuestions] = useState([]);
   const [userViewedQuestions, setUserViewedQuestions] = useState([]);
+
   const getAllDetailsOfUser = async () => {
     const response = await axios.post("/api/getUserDetails", {
       email: currentUser._delegate.email,
@@ -60,6 +62,15 @@ const Profile = () => {
   useEffect(() => {
     getAllDetailsOfUser();
   }, []);
+
+  const deleteQuestionHandler = async (questionId) => {
+    const response = await axios.post("/api/deleteQuestion", {
+      email: currentUser._delegate.email,
+      question_id: questionId,
+    });
+    console.log(response.data);
+  };
+
   return (
     <div>
       <NavBar />
@@ -90,14 +101,14 @@ const Profile = () => {
                   Questions Unlocked
                 </h1>
                 <div>
-                  {userUploadedQuestions.map((question) => {
+                  {userViewedQuestions.map((question) => {
                     return (
                       <a
                         href={`/questions/${question.question_id}`}
                         key={question.question_id}
                       >
-                        <div className="w-1/1 px-0 py-6 mx-auto mt-10 cursor-pointer hover:shadow-lg bg-white border border-gray-200 sm:px-8  sm:rounded-lg sm:shadow ">
-                          <h3 className=" text-teal-600">{question.title}</h3>
+                        <div className="w-1/1 px-0 py-6 mx-auto mt-10 flex flex-row justify-between items-center cursor-pointer hover:shadow-lg bg-white border border-gray-200 sm:px-8  sm:rounded-lg sm:shadow ">
+                          <div className=" text-teal-600">{question.title}</div>
                         </div>
                       </a>
                     );
@@ -107,22 +118,30 @@ const Profile = () => {
             ) : (
               ""
             )}
-            {userViewedQuestions.length ? (
+            {userUploadedQuestions.length ? (
               <div className="p-0 bg-white  mt-10">
                 <h1 className="text-3xl font-bold flex justify-center items-center text-teal-600">
                   Uploaded Questions
                 </h1>
                 <div>
-                  {userViewedQuestions.map((question) => {
+                  {userUploadedQuestions.map((question) => {
                     return (
-                      <a
-                        href={`/questions/${question.question_id}`}
-                        key={question.question_id}
-                      >
-                        <div className="w-1/1 px-0 py-6 mx-auto mt-10 cursor-pointer hover:shadow-lg bg-white border border-gray-200 sm:px-8  sm:rounded-lg sm:shadow ">
-                          <h3 className=" text-teal-600">{question.title}</h3>
+                      <div className="w-1/1 px-0 py-6 mx-auto mt-10 flex flex-row justify-between items-center cursor-pointer hover:shadow-lg bg-white border border-gray-200 sm:px-8  sm:rounded-lg sm:shadow ">
+                        <a
+                          href={`/questions/${question.question_id}`}
+                          key={question.question_id}
+                        >
+                          <div className=" text-teal-600">{question.title}</div>
+                        </a>
+                        <div
+                          className="text-red-300 font-bold hover:text-red-500"
+                          onClick={() =>
+                            deleteQuestionHandler(question.question_id)
+                          }
+                        >
+                          <RiDeleteBin6Fill size={24} />
                         </div>
-                      </a>
+                      </div>
                     );
                   })}
                 </div>
