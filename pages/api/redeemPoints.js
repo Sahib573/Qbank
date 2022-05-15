@@ -6,17 +6,16 @@ export default async function Users(req, res) {
     const db = client.db("user");
     const questionId = req.body.question_id;
     const userEmail = req.body.email;
-    const uploadedQuestions = await db.collection(userEmail).find({}).toArray();
-    const newUploadedQuestions = uploadedQuestions[0].uploaded;
-    const questionIndex = uploadedQuestions[0].uploaded.indexOf(questionId);
-    if (questionIndex > -1) {
-      newUploadedQuestions.splice(questionIndex, 1);
-    }
+    const points = req.body.points;
+    const viewedQuestions = await db.collection(userEmail).find({}).toArray();
+    const newViewedQuestions = viewedQuestions[0].viewed;
+    const oldPoints = viewedQuestions[0].points;
+    newViewedQuestions.push(questionId);
     await db
       .collection(userEmail)
       .updateOne(
-        { _id: uploadedQuestions[0]._id },
-        { $set: { uploaded: newUploadedQuestions } }
+        { _id: viewedQuestions[0]._id },
+        { $set: { viewed: newViewedQuestions, points: oldPoints - points } }
       );
     res.json({ message: "This request is allowed", user: false });
   } else {

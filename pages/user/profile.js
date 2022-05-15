@@ -4,8 +4,7 @@ import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { RiDeleteBin6Fill } from "react-icons/ri";
-import { FiEdit } from "react-icons/fi";
+import QuestionHeading from "../../components/Profile/QuestionHeading";
 
 const Profile = () => {
   const { currentUser } = useAuth();
@@ -21,60 +20,13 @@ const Profile = () => {
       setUserDetails({});
     } else {
       setUserDetails(response.data);
-      if (response.data.viewed.length) {
-        for (let i = 0; i < response.data.viewed.length; i++) {
-          const response2 = await axios.post("/api/getQuestionDetails", {
-            question_id: response.data.viewed[i],
-          });
-          let check = true;
-          for (let j = 0; j < userViewedQuestions; j++) {
-            if (userViewedQuestions[j] == response2.data) {
-              check = false;
-              break;
-            }
-          }
-          if (check) {
-            setUserViewedQuestions([...userViewedQuestions, response2.data]);
-          }
-        }
-      }
-      if (response.data.uploaded.length) {
-        for (let i = 0; i < response.data.uploaded.length; i++) {
-          const response2 = await axios.post("/api/getQuestionDetails", {
-            question_id: response.data.uploaded[i],
-          });
-          let check = true;
-          for (let j = 0; j < userUploadedQuestions; j++) {
-            if (u[i] == response2.data) {
-              check = false;
-              break;
-            }
-          }
-          if (check) {
-            setUserUploadedQuestions([
-              ...userUploadedQuestions,
-              response2.data,
-            ]);
-          }
-        }
-      }
+      setUserViewedQuestions(response.data.viewed);
+      setUserUploadedQuestions(response.data.uploaded);
     }
   };
   useEffect(() => {
     getAllDetailsOfUser();
   }, []);
-
-  const deleteQuestionHandler = async (questionId) => {
-    const response = await axios.post("/api/deleteQuestion", {
-      email: currentUser._delegate.email,
-      question_id: questionId,
-    });
-    console.log(response.data);
-  };
-  const editQuestionHandler = async (questionId) => {
-    
-    
-  };
 
   return (
     <div>
@@ -94,7 +46,7 @@ const Profile = () => {
             </h1>
             <p className="mt-4 text-gray-500">{currentUser.email}</p>
             <h1 className="text-2xl font-medium text-gray-700">
-              Points : Some Points
+              Points : {userDetails.points}
             </h1>
           </div>
         </div>
@@ -105,20 +57,17 @@ const Profile = () => {
                 <h1 className="text-3xl font-bold flex justify-center items-center text-teal-600">
                   Questions Unlocked
                 </h1>
-                <div>
-                  {userViewedQuestions.map((question) => {
-                    return (
-                      <a
-                        href={`/questions/${question.question_id}`}
-                        key={question.question_id}
-                      >
-                        <div className="w-1/1 px-0 py-6 mx-auto mt-10 flex flex-row justify-between items-center cursor-pointer hover:shadow-lg bg-white border border-gray-200 sm:px-8  sm:rounded-lg sm:shadow ">
-                          <div className=" text-teal-600">{question.title}</div>
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
+                {userViewedQuestions.length
+                  ? userViewedQuestions.map((question) => {
+                      return (
+                        <QuestionHeading
+                          questionId={question}
+                          viewed={true}
+                          key={question}
+                        />
+                      );
+                    })
+                  : ""}
               </div>
             ) : (
               ""
@@ -129,34 +78,17 @@ const Profile = () => {
                   Uploaded Questions
                 </h1>
                 <div>
-                  {userUploadedQuestions.map((question) => {
-                    return (
-                      <div className="w-1/1 px-0 py-6 mx-auto mt-10 flex flex-row justify-between items-center cursor-pointer hover:shadow-lg bg-white border border-gray-200 sm:px-8  sm:rounded-lg sm:shadow ">
-                        <a
-                          href={`/questions/${question.question_id}`}
-                          key={question.question_id}
-                        >
-                          <div className=" text-teal-600">{question.title}</div>
-                        </a>
-                        <div
-                          className="text-red-300 font-bold hover:text-red-500"
-                          onClick={() =>
-                            deleteQuestionHandler(question.question_id)
-                          }
-                        >
-                          <RiDeleteBin6Fill size={24} />
-                        </div>
-                        <div
-                          className="text-teal-300 font-bold hover:text-teal-500"
-                          onClick={() =>
-                            editQuestionHandler(question.question_id)
-                          }
-                        >
-                          <FiEdit size={24} />
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {userUploadedQuestions.length
+                    ? userUploadedQuestions.map((question) => {
+                        return (
+                          <QuestionHeading
+                            questionId={question}
+                            viewed={false}
+                            key={question}
+                          />
+                        );
+                      })
+                    : ""}
                 </div>
               </div>
             ) : (

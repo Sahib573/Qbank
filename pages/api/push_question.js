@@ -30,7 +30,7 @@ export default async function Users(req, res) {
       author: req.body.author,
       author_email: req.body.author_email,
       explanation: req.body.explanation,
-      question_id: id_,
+      id: id_,
     });
 
     console.log("question Posted");

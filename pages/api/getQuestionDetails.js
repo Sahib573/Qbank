@@ -7,7 +7,7 @@ export default async function Users(req, res) {
     const questionId = req.body.question_id;
     const questionDetails = await db
       .collection("question_details")
-      .find({ question_id: questionId })
+      .find({ id: questionId })
       .toArray();
     res.json(questionDetails[0]);
   } else {

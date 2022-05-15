@@ -31,6 +31,20 @@ function WorkHome() {
             </div>
           </Link>
         </div>
+        <div className="h-30 w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4 border-white border-t-blue-600   cursor-pointer">
+          <Link href="/questions/subject/social_science">
+            <div>
+              <h2 className="font-extrabold text-2xl text-gray-600 pb-2">
+                Social Science
+              </h2>
+              <p className="text-zinc-500 font-semibold">
+                Social science is the branch of science devoted to the study of
+                societies and the relationships among individuals within those
+                societies
+              </p>
+            </div>
+          </Link>
+        </div>
         <div className="h-30 w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4 border-white border-t-teal-600   cursor-pointer">
           <Link href="/questions/subject/hindi">
             <div>

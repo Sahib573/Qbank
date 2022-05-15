@@ -6,7 +6,7 @@ import Footer from "../../components/Footer";
 import { useAuth } from "../../components/context/AuthContext";
 
 const Doubt = () => {
-  const [displayQuestion, setDisplayQuestion] = useState(true);
+  const [displayQuestion, setDisplayQuestion] = useState(false);
   const [questionDetails, setQuestionDetails] = useState();
   const { currentUser } = useAuth();
   const route = useRouter();
@@ -16,9 +16,19 @@ const Doubt = () => {
     });
     setQuestionDetails(response.data);
   };
+  const checkQuestionAccess = async () => {
+    const response = await axios.post("/api/checkQuestionAcceptance", {
+      question_id: route.query.id,
+      userEmail: currentUser._delegate.email,
+    });
+    if (response.data.user) {
+      setDisplayQuestion(true);
+    }
+  };
   useEffect(() => {
+    checkQuestionAccess();
     getQuestionDetails();
-  });
+  }, []);
   if (displayQuestion && questionDetails) {
     return (
       <div className="">
