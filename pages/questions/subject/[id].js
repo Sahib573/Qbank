@@ -9,6 +9,13 @@ import Question from "../../../components/Questions/Question";
 function Subject() {
   const route = useRouter();
   const subject = route.query.id;
+  useEffect(async () => {
+    const response = await axios.post("/api/retrieve_q", {
+      subject_name: subject
+    });
+    console.log(response.data);
+    return response.data;
+  },[]);
   return (
     <div>
       <NavBar />
