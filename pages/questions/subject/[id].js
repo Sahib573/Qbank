@@ -1,6 +1,6 @@
+import React, { useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import Footer from "../../../components/Footer";
 import NavBar from "../../../components/NavBar";
 import { useRouter } from "next/router";
@@ -9,13 +9,17 @@ import Question from "../../../components/Questions/Question";
 function Subject() {
   const route = useRouter();
   const subject = route.query.id;
-  useEffect(async () => {
-    const response = await axios.post("/api/retrieve_q", {
-      subject_name: subject
-    });
-    console.log(response.data);
-    return response.data;
-  },[]);
+  const getQuestions = async () => {
+    if (subject) {
+      const response = await axios.post("/api/retrieve_question", {
+        subject_name: subject,
+      });
+      console.log(response.data);
+    }
+  };
+  useEffect(() => {
+    getQuestions();
+  }, []);
   return (
     <div>
       <NavBar />

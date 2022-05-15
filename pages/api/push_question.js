@@ -15,7 +15,6 @@ export default async function Users(req, res) {
     console.log(questionArrayDetails[0]);
     const newQuestionArray = questionArrayDetails[0].questionId;
     newQuestionArray.push(id_);
-    console.log(newQuestionArray);
     await db
       .collection(subject_name)
       .updateOne(
