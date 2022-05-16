@@ -57,19 +57,11 @@ const Doubt = () => {
           </div>
 
           <div className="bg-white ml-2 w-8/12 p-8 rounded-lg shadow-lg relative hover:shadow-2xl transition duration-500">
-            <div className="grid grid-cols-2">
+            <div className="grid ">
               <div className="mb-4">
                 <div className="text-2xl text-gray-800 font-semibold">
                   {questionDetails.title}
                 </div>
-                <div className="text-sm flex">
-                  Posted in <div className="px-1 text-teal-600">General</div>{" "}
-                  recently
-                </div>
-              </div>
-              <div className="flex flex-col justify-center items-center ml-72 text-gray-600 hover:text-blue-700 cursor-pointer">
-                <i className="fas fa-chevron-up"></i>
-                <div>Views</div>
               </div>
             </div>
             <div className="">

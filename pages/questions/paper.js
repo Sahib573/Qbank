@@ -5,7 +5,7 @@ import { jsPDF } from "jspdf";
 import axios from "axios";
 import { useAuth } from "../../components/context/AuthContext";
 
-function paper() {
+function Paper() {
   const [easyQuestions, setEasyQuestions] = useState(0);
   const [mediumQuestions, setMediumQuestions] = useState(0);
   const [hardQuestions, setHardQuestions] = useState(0);
@@ -106,7 +106,7 @@ function paper() {
         {finalQuestionSet && finalQuestionSet.length
           ? finalQuestionSet.map((question) => {
               return (
-                <div>
+                <div key={question.id}>
                   <div id="text">Q ) {question.title}</div>
                   <div className="pl-5">1. {question.option1}</div>
                   <div className="pl-5">2. {question.option2}</div>
@@ -136,4 +136,4 @@ function paper() {
   );
 }
 
-export default paper;
+export default Paper;

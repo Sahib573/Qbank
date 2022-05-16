@@ -1,8 +1,8 @@
+import React, { useEffect, useState } from "react";
 import { protectedRoute } from "../../components/context/ProtectedRoute";
 import { useAuth } from "../../components/context/AuthContext";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import QuestionHeading from "../../components/Profile/QuestionHeading";
