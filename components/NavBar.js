@@ -28,13 +28,18 @@ function NavBar() {
             </Link>
             <div className="hidden sm:flex sm:items-center">
               <Link href="/" passHref>
-                <div className="text-gray-700 text-lg font-semibold hover:text-teal-600   cursor-pointer mr-4">
+                <div className="text-gray-700 text-lg font-semibold hover:text-teal-600   cursor-pointer mr-7">
                   Home
                 </div>
               </Link>
               <Link href="/questions" passHref>
-                <div className="text-gray-700 text-lg font-semibold hover:text-teal-600   cursor-pointer mr-4">
+                <div className="text-gray-700 text-lg font-semibold hover:text-teal-600   cursor-pointer mr-7">
                   Questions
+                </div>
+              </Link>
+              <Link href="/questions/paper" passHref>
+                <div className="text-gray-700 text-lg font-semibold hover:text-teal-600   cursor-pointer mr-7">
+                  Paper
                 </div>
               </Link>
             </div>
