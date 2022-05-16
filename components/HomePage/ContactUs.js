@@ -8,7 +8,7 @@ function ContactUs() {
           Drop Us a Line
         </div>
         <div className="ml-20">
-          <div className="pb-2 pl-1 mt-8">Full Name</div>
+          <div className="pb-2 text-xl pl-1 mt-8">Full Name</div>
           <div>
             <input
               type="text"
@@ -18,7 +18,7 @@ function ContactUs() {
           </div>
         </div>
         <div className="ml-20">
-          <div className="pb-2 pl-1 mt-8">Email Address</div>
+          <div className="pb-2 text-xl pl-1 mt-8">Email Address</div>
           <div>
             <input
               type="text"
@@ -28,7 +28,7 @@ function ContactUs() {
           </div>
         </div>
         <div className="ml-20">
-          <div className="pb-2 pl-1 mt-8">Message</div>
+          <div className="pb-2 text-xl pl-1 mt-8">Message</div>
           <div>
             <textarea
               className="border-x border-y rounded-sm pl-4 font-extralight w-96 pt-4 h-40"
@@ -37,7 +37,7 @@ function ContactUs() {
           </div>
         </div>
         <div className="ml-20 mt-2">
-          <button className="w-72 h-10 bg-teal-600 text-white rounded-md ml-1 hover:bg-slate-200 hover:text-teal-700">
+          <button className="w-72 text-xl h-10 bg-teal-600 text-white rounded-md ml-1 hover:bg-slate-200 hover:text-teal-700">
             Submit
           </button>
         </div>

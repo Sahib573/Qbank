@@ -3,9 +3,9 @@ import Link from "next/link";
 function WorkHome() {
   return (
     <div className="flex flex-row justify-center items-center m-10">
-      <div className="h-30 w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4 border-white border-t-rose-500 cursor-pointer">
+      <div className="h-30 hover:bg-rose-100 transition duration-500 hover:scale-105 hover:shadow-2xl w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4 border-white border-t-rose-500 cursor-pointer">
         <Link href="/questions/subject/english">
-          <div>
+          <div >
             <h2 className="font-extrabold text-2xl text-gray-600 pb-2">
               English
             </h2>
@@ -18,7 +18,7 @@ function WorkHome() {
         </Link>
       </div>
       <div className="flex flex-col">
-        <div className="h-30 w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4 border-white border-t-lime-500 cursor-pointer">
+        <div className="h-30 hover:shadow-2xl w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4  border-t-lime-500 cursor-pointer hover:bg-lime-100 transition duration-500 hover:scale-105">
           <Link href="/questions/subject/maths">
             <div>
               <h2 className="font-extrabold text-2xl text-gray-600 pb-2">
@@ -31,7 +31,7 @@ function WorkHome() {
             </div>
           </Link>
         </div>
-        <div className="h-30 w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4 border-white border-t-blue-600   cursor-pointer">
+        <div className="h-30 hover:bg-teal-100 transition duration-500 hover:scale-105 hover:shadow-2xl w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4  border-t-teal-600   cursor-pointer">
           <Link href="/questions/subject/social_science">
             <div>
               <h2 className="font-extrabold text-2xl text-gray-600 pb-2">
@@ -45,7 +45,7 @@ function WorkHome() {
             </div>
           </Link>
         </div>
-        <div className="h-30 w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4 border-white border-t-teal-600   cursor-pointer">
+        <div className="h-30 hover:bg-teal-100 transition duration-500 hover:scale-105 hover:shadow-2xl w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4 border-t-teal-600   cursor-pointer">
           <Link href="/questions/subject/hindi">
             <div>
               <h2 className="font-extrabold text-2xl text-gray-600 pb-2">
@@ -60,7 +60,7 @@ function WorkHome() {
           </Link>
         </div>
       </div>
-      <div className="h-30 w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4 border-white border-t-orange-500 cursor-pointer">
+      <div className="h-30 hover:bg-teal-100 transition duration-500 hover:scale-105 hover:shadow-2xl w-72 m-10 p-10 rounded-xl shadow-xl shadow-gray-400 border-4 border-white border-t-teal-600   cursor-pointer">
         <Link href="/questions/subject/science">
           <div>
             <h2 className="font-extrabold text-2xl text-gray-600 pb-2">

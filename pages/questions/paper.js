@@ -27,6 +27,10 @@ function paper() {
   return (
     <div>
       <NavBar />
+      <div className="w-full text-2xl flex align-center justify-center m-5 text-center">
+        Please <span className="text-3xl ml-2 mr-2 italic text-bold text-red-300"> Select </span> Questions
+        accordingly
+      </div>
       <div className="grid xl:grid-cols-3 xl:gap-6 my-16 mx-10">
         <div className="relative z-0 w-full mb-6 group">
           <input
@@ -80,9 +84,9 @@ function paper() {
           </label>
         </div>
       </div>
-      <div className="relative z-0 w-full mb-6 group">
+      <div className="relative z-0 w-full flex justify-center align-center mb-6 group">
         <button
-          className=" text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg  w-full px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
+          className=" text-white text-xl bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg  w-5/12 px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
           onClick={generateQuestionHandler}
         >
           Generate
@@ -107,9 +111,9 @@ function paper() {
           : ""}
       </div>
       {finalQuestionSet ? (
-        <div className="relative z-0 w-full mb-6 group">
+        <div className="relative z-0 w-full justify-center align-center mb-6 group flex">
           <button
-            className=" text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg  w-full px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
+            className=" text-white text-xl	 bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg  w-5/12 px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
             onClick={generatePDFHandler}
           >
             Generate PDF

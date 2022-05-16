@@ -12,7 +12,7 @@ function NavBar() {
   };
   return (
     <div className="sticky top-0 z-50">
-      <div className="bg-white shadow">
+      <div className="bg-white shadow shadow-teal-300">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-2">
             <Link href="/" passHref>
