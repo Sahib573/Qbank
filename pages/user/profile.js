@@ -51,15 +51,19 @@ const Profile = () => {
             </h1>
           </div>
         </div>
-        <div className="mt-3">
-          <Link href="TecherApply">
-            <div className="flex justify-end items-center">
-              <div className="p-2 border-2 border-teal-500 w-1/6 flex justify-center items-center rounded-lg hover:border-teal-200 hover:text-teal-500 cursor-pointer">
-                Apply for Teacher
+        {userDetails && !userDetails.teacher ? (
+          <div className="mt-3">
+            <Link href="/user/teacherApply">
+              <div className="flex justify-end items-center">
+                <div className="p-2 border-2 border-teal-500 w-1/6 flex justify-center items-center rounded-lg hover:border-teal-200 hover:text-teal-500 cursor-pointer">
+                  Apply for Teacher
+                </div>
               </div>
-            </div>
-          </Link>
-        </div>
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
         {userDetails ? (
           <div>
             {userViewedQuestions.length ? (

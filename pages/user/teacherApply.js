@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 
-function TecherApply() {
+function TeacherApply() {
   return (
     <div>
       <NavBar />
@@ -160,4 +160,4 @@ function TecherApply() {
   );
 }
 
-export default TecherApply;
+export default TeacherApply;
