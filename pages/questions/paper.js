@@ -3,12 +3,14 @@ import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import { jsPDF } from "jspdf";
 import axios from "axios";
+import { useAuth } from "../../components/context/AuthContext";
 
 function paper() {
-  const [easyQuestions, setEasyQuestions] = useState();
-  const [mediumQuestions, setMediumQuestions] = useState();
-  const [hardQuestions, setHardQuestions] = useState();
+  const [easyQuestions, setEasyQuestions] = useState(0);
+  const [mediumQuestions, setMediumQuestions] = useState(0);
+  const [hardQuestions, setHardQuestions] = useState(0);
   const [finalQuestionSet, setFinalQuestionSet] = useState([]);
+  const { currentUser } = useAuth();
   const generateQuestionHandler = async () => {
     const response = await axios.post("/api/getQuestionsForPaper", {
       easy: easyQuestions,
@@ -18,6 +20,10 @@ function paper() {
     setFinalQuestionSet(response.data.questions);
   };
   const generatePDFHandler = async () => {
+    await axios.post("/api/pdfRedeemPoints", {
+      email: currentUser._delegate.email,
+      points: 10 * easyQuestions + 15 * mediumQuestions + 20 * hardQuestions,
+    });
     const pdf = new jsPDF("portrait", "pt", "a4");
     const data = document.querySelector("#pdf");
     pdf.html(data).then(() => {
@@ -28,8 +34,12 @@ function paper() {
     <div>
       <NavBar />
       <div className="w-full text-2xl flex align-center justify-center m-5 text-center">
-        Please <span className="text-3xl ml-2 mr-2 italic text-bold text-red-300"> Select </span> Questions
-        accordingly
+        Please{" "}
+        <span className="text-2xl ml-2 mr-2  text-bold text-teal-500">
+          {" "}
+          Select{" "}
+        </span>{" "}
+        Questions accordingly
       </div>
       <div className="grid xl:grid-cols-3 xl:gap-6 my-16 mx-10">
         <div className="relative z-0 w-full mb-6 group">
@@ -97,10 +107,7 @@ function paper() {
           ? finalQuestionSet.map((question) => {
               return (
                 <div>
-                  <div>
-                    <div id="text">Q ) {question.title}</div>
-                    <div className="float-right">{question.difficulty}</div>
-                  </div>
+                  <div id="text">Q ) {question.title}</div>
                   <div className="pl-5">1. {question.option1}</div>
                   <div className="pl-5">2. {question.option2}</div>
                   <div className="pl-5">3. {question.option3}</div>
@@ -110,13 +117,15 @@ function paper() {
             })
           : ""}
       </div>
-      {finalQuestionSet ? (
+      {finalQuestionSet && finalQuestionSet.length ? (
         <div className="relative z-0 w-full justify-center align-center mb-6 group flex">
           <button
             className=" text-white text-xl	 bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg  w-5/12 px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
             onClick={generatePDFHandler}
           >
-            Generate PDF
+            Generate PDF connsuming{" "}
+            {10 * easyQuestions + 15 * mediumQuestions + 20 * hardQuestions}{" "}
+            points
           </button>
         </div>
       ) : (

@@ -41,13 +41,6 @@ const Profile = () => {
               alt="Profile picture"
             />
           </div>
-          <Link href="TecherApply">
-            <div className="flex justify-end items-center">
-              <div className="p-2 border-2 border-teal-500 w-1/6 flex justify-center items-center rounded-lg hover:border-teal-100 hover:text-teal-500 cursor-pointer">
-                Apply for Teacher
-              </div>
-            </div>
-          </Link>
           <div className="mt-10 border-b pb-12 col-span-2">
             <h1 className="text-4xl font-medium text-gray-700">
               {currentUser.displayName}
@@ -57,6 +50,15 @@ const Profile = () => {
               Points : {userDetails.points}
             </h1>
           </div>
+        </div>
+        <div className="mt-3">
+          <Link href="TecherApply">
+            <div className="flex justify-end items-center">
+              <div className="p-2 border-2 border-teal-500 w-1/6 flex justify-center items-center rounded-lg hover:border-teal-200 hover:text-teal-500 cursor-pointer">
+                Apply for Teacher
+              </div>
+            </div>
+          </Link>
         </div>
         {userDetails ? (
           <div>
