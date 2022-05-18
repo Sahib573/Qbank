@@ -10,6 +10,9 @@ function Paper() {
   const [mediumQuestions, setMediumQuestions] = useState(0);
   const [hardQuestions, setHardQuestions] = useState(0);
   const [finalQuestionSet, setFinalQuestionSet] = useState([]);
+  const [collegeName, setCollegeName] = useState("");
+  const [examType, setExamType] = useState("");
+  const [branch, setBranch] = useState("");
   const { currentUser } = useAuth();
   const generateQuestionHandler = async () => {
     const response = await axios.post("/api/getQuestionsForPaper", {
@@ -18,6 +21,7 @@ function Paper() {
       hard: hardQuestions,
     });
     setFinalQuestionSet(response.data.questions);
+    console.log(collegeName);
   };
   const generatePDFHandler = async () => {
     await axios.post("/api/pdfRedeemPoints", {
@@ -94,6 +98,59 @@ function Paper() {
           </label>
         </div>
       </div>
+      <div className="grid xl:grid-cols-2 xl:gap-6 my-16 mx-10">
+        <div className="relative z-0 w-full mb-6 group col-span-2">
+          <input
+            type="string"
+            name="opt1"
+            placeholder=" "
+            id="opt1"
+            className="block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark: dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+            required
+            onChange={(e) => setCollegeName(e.target.value)}
+          />
+          <label
+            htmlFor="opt1"
+            className="peer-focus:font-medium absolute  text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >
+            Institute Name
+          </label>
+        </div>
+        <div className="relative z-0 w-full mb-6 group">
+          <input
+            type="string"
+            name="opt2"
+            id="opt2"
+            placeholder=" "
+            className="block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark: dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+            required
+            onChange={(e) => setExamType(e.target.value)}
+          />
+          <label
+            htmlFor="opt2"
+            className="peer-focus:font-medium absolute  text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >
+            Exam Type
+          </label>
+        </div>
+        <div className="relative z-0 w-full mb-6 group">
+          <input
+            type="string"
+            name="opt2"
+            id="opt2"
+            placeholder=" "
+            className="block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark: dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+            required
+            onChange={(e) => setBranch(e.target.value)}
+          />
+          <label
+            htmlFor="opt2"
+            className="peer-focus:font-medium absolute  text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >
+            Branch
+          </label>
+        </div>
+      </div>
       <div className="relative z-0 w-full flex justify-center align-center mb-6 group">
         <button
           className=" text-white text-xl bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg  w-5/12 px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
@@ -103,6 +160,14 @@ function Paper() {
         </button>
       </div>
       <div id="pdf">
+        <div className="flex flex-col w-1/3 justify-center items-center mb-4">
+          <div className="text-4xl">{collegeName}</div>
+          <br />
+          <div className="text-3xl">{examType}</div>
+          <br />
+          <div className="text-2xl">{branch}</div>
+          <br />
+        </div>
         {finalQuestionSet && finalQuestionSet.length
           ? finalQuestionSet.map((question) => {
               return (

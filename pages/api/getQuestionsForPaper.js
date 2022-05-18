@@ -1,5 +1,18 @@
 import clientPromise from "../../mongodb-config";
+function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
 
+  return array;
+}
 export default async function Paper(req, res) {
   if (req.method === "POST") {
     const client = await clientPromise;
@@ -13,6 +26,7 @@ export default async function Paper(req, res) {
       .collection("question_details")
       .find({ difficulty: "easy" })
       .toArray();
+    shuffle(easyQuestionDetails);
     for (let i = 0; i < easyNumber && easyQuestionDetails.length; i++) {
       finalQuestionList.push(easyQuestionDetails[i]);
     }
@@ -20,6 +34,7 @@ export default async function Paper(req, res) {
       .collection("question_details")
       .find({ difficulty: "medium" })
       .toArray();
+    shuffle(mediumQuestionDetails);
     for (let i = 0; i < mediumNumber && mediumQuestionDetails.length; i++) {
       finalQuestionList.push(mediumQuestionDetails[i]);
     }
@@ -27,6 +42,7 @@ export default async function Paper(req, res) {
       .collection("question_details")
       .find({ difficulty: "hard" })
       .toArray();
+    shuffle(hardQuestionDetails);
     for (let i = 0; i < hardNumber && hardQuestionDetails.length; i++) {
       finalQuestionList.push(hardQuestionDetails[i]);
     }
